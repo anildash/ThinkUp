@@ -175,4 +175,13 @@ class Insight {
     public function setMilestoneNumber($milestone_number) {
         $this->related_data["milestone_number"] = $milestone_number;
     }
+    /**
+     * Add button to insight's related data.
+     * @param int
+     * @return void
+     */
+    public function setButton($button) {
+        $this->related_data["button"] = $button;
+    }
+
 }

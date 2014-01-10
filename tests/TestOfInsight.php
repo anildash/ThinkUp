@@ -51,7 +51,10 @@ class TestOfInsight extends ThinkUpBasicUnitTestCase {
         $i->setLinks("listoflinks");
         $this->assertEqual($i->related_data["links"], "listoflinks");
 
-        $i->setMilestoneNumber("milestone_number");
-        $this->assertEqual($i->related_data["milestone_number"], "milestone_number");
+        $i->setMilestones("milestones");
+        $this->assertEqual($i->related_data["milestones"], "milestones");
+
+        $i->setButton("button");
+        $this->assertEqual($i->related_data["button"], "button");
     }
 }
