@@ -5,23 +5,29 @@
   <div class="stream">
 
 {include file="_usermessage.tpl"}
-
 {if $message_header}
   {$message_header}
   {$message_body}
 {/if}
-
 {assign var='cur_date' value=''}
 {assign var='previous_date' value=''}
 {foreach from=$insights key=tid item=i name=foo}
+  {math equation="x % 5" x=$i->id assign=random_color_num}
+  {if $i->slug eq 'posts_on_this_day_popular_flashback' | 'favorites_year_ago_flashback'}{assign var='color' value='historical'}
+  {elseif $random_color_num eq '0'}{assign var='color' value='mint'}
+  {elseif $random_color_num eq '1'}{assign var='color' value='purple'}
+  {elseif $random_color_num eq '2'}{assign var='color' value='orange'}
+  {elseif $random_color_num eq '3'}{assign var='color' value='green'}
+  {else}{assign var='color' value='red'}
+  {/if}
         {if $previous_date neq $cur_date}
     </div><!-- end date-group -->
         {/if}
- 
+
         {if $cur_date neq $i->date}
     <div class="date-group{if $i->date|relative_day eq "today"} today{/if}">
         <div class="date-marker">
-            
+
             {if $i->date|relative_day eq "today" }
             <div class="relative">
                 {if $i->instance->crawler_last_run eq 'realtime'}Updated in realtime{else}{$i->instance->crawler_last_run|relative_datetime|ucfirst} ago{/if}
@@ -37,19 +43,24 @@
         {/if}
 
 <div class="panel panel-default insight insight-default insight-{$i->slug|replace:'_':'-'}
-            {if $i->slug eq 'outreach_punchcard' | $i->slug eq 'interactions' | $i->emphasis eq '2'}insight-wide{/if}
+            {if $i->slug eq 'outreach_punchcard' | $i->emphasis eq '2'}insight-wide{/if}
             {if $i->emphasis >= '1'}insight-hero{/if}
-            {if $i->emphasis >= '1'}insight-purple{/if}
+            insight-{$color|strip}
             " id="insight-{$i->id}">
   <div class="panel-heading ">
     <h2 class="panel-title">{$i->headline}</h2>
+    {if ($i->slug eq 'posts_on_this_day_popular_flashback' or $i->slug eq 'interactions')}
+    <p class="panel-subtitle">{$i->text|link_usernames_to_twitter}</p>{/if}
+    {if isset($i->header_image)}
+    <img src="{$i->header_image}" alt="" width="50" height="50" class="img-circle userpic userpic-featured">
+    {/if}
   </div>
   <div class="panel-desktop-right">
     <div class="panel-body">
 
       <div class="panel-body-inner">
-
-      {if $i->text neq ''}<p>{$i->text|link_usernames_to_twitter}</p>{/if}
+      {if $i->text neq '' and $i->slug neq 'posts_on_this_day_popular_flashback'
+      and $i->slug neq 'interactions'}<p id="insight-text-{$i->id}">{$i->text|link_usernames_to_twitter}</p>{/if}
 
       {if $i->filename neq ''}
           {assign var='tpl_filename' value=$i->filename|cat:'.tpl'}
@@ -62,7 +73,7 @@
     </div>
     <div class="panel-footer">
       <div class="insight-metadata">
-        <i class="fa fa-twitter-square icon icon-network"></i>
+        <i class="fa fa-{$i->instance->network}-square icon icon-network"></i>
         <a class="permalink" href="?u={$i->instance->network_username}&amp;n={$i->instance->network}&amp;d={$i->date|date_format:'%Y-%m-%d'}&amp;s={$i->slug}">{$i->date|date_format:"%b %e"}</a>
       </div>
       <div class="share-menu">
@@ -70,8 +81,6 @@
         <ul class="share-services">
         <li class="share-service"><a href="#"><i class="fa fa-twitter icon icon-share"></i></a></li>
         <li class="share-service"><a href="#"><i class="fa fa-facebook icon icon-share"></i></a></li>
-        <li class="share-service"><a href="#"><i class="fa fa-google-plus icon icon-share"></i></a></li>
-        <li class="share-service"><a href="#"><i class="fa fa-envelope icon icon-share"></i></a></li>
         </ul>
         <a class="share-button-close" href="#"><i class="fa fa-times-circle icon icon-share"></i></a>
       </div>

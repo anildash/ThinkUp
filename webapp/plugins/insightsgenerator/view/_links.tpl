@@ -5,11 +5,9 @@ Parameters:
 $i (required) Insight object
 $icon (required) Icon glyph name, from http://twitter.github.com/bootstrap/base-css.html#icons
 *}
-
-
-      {if isset($i->related_data[0]->links)}
+      {if isset($i->related_data.posts)}
           <ul class="body-list link-list" style="height: 109px;">
-          {foreach from=$i->related_data key=pid item=p name=bar}
+          {foreach from=$i->related_data.posts key=pid item=p name=bar}
 
               {foreach from=$p->links key=lid item=l name=lnk}
               <li class="list-item">
@@ -24,10 +22,13 @@ $icon (required) Icon glyph name, from http://twitter.github.com/bootstrap/base-
                           </a>
                       </div>
                       <div class="link-metadata">
-                          Posted by {'@'|cat:$p->author_username|link_usernames_to_twitter} 
-                          on {if $p->network eq 'twitter'}<a href="http://twitter.com/{$p->author_user_id}/statuses/{$p->post_id}">{/if}
-                          {$p->adj_pub_date|date_format:"%l:%M %p - %d %b %y"}
-                          {if $p->network eq 'twitter'}</a>{/if}
+                      {if $p->network eq 'twitter'}
+                          Posted by {'@'|cat:$p->author_username|link_usernames_to_twitter}
+                          on <a href="http://twitter.com/{$p->author_user_id}/statuses/{$p->post_id}">
+                          {$p->adj_pub_date|date_format:"%b %e"}</a>
+                      {else}
+                          Posted by {$p->author_fullname} on {$p->adj_pub_date|date_format:"%l:%M %p - %d %b %y"}
+                      {/if}
                       </div>
                   </div>
               </li>

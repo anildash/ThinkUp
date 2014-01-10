@@ -315,7 +315,7 @@ class InsightMySQLDAO  extends PDODAO implements InsightDAO {
         $q .= "INNER JOIN #prefix#owner_instances oi ON su.id = oi.instance_id ";
         $q .= "LEFT JOIN #prefix#users u ON (su.network_user_id = u.user_id AND su.network = u.network) ";
         $q .= "WHERE su.is_active = 1 AND oi.owner_id = :owner_id AND time_generated > :since ";
-        $q .= "AND i.text != '' ORDER BY date DESC, emphasis DESC, i.id;";
+        $q .= "AND i.filename != 'dashboard' ORDER BY date DESC, emphasis DESC, i.id;";
         $vars = array(
             ":owner_id"=>(int)$owner_id,
             ':since'=>$since
