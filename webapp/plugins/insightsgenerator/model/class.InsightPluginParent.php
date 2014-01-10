@@ -37,12 +37,12 @@ class InsightPluginParent {
      * @var InsightTerms
      */
     var $terms;
-    /** 
+    /**
      * Insight date
      * @var DateTime
      */
     var $insight_date;
-    /** 
+    /**
      * Username.
      * @var str
      */
@@ -116,8 +116,7 @@ class InsightPluginParent {
             }
         }
 
-        return true;
-        // return $run;
+        return $run;
     }
 
     public function renderConfiguration($owner) {

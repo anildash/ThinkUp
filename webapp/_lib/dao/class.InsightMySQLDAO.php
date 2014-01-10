@@ -130,14 +130,15 @@ class InsightMySQLDAO  extends PDODAO implements InsightDAO {
         $existing_insight = self::getInsight($insight->slug, $insight->instance_id, $insight->date);
         if ($existing_insight == null) {
             $q = "INSERT INTO #prefix#insights SET slug=:slug, date=:date, instance_id=:instance_id, ";
-            $q .= "headline=:headline, text=:text, filename=:filename, emphasis=:emphasis, ";
-            $q .= "related_data=:related_data, time_generated=:time_generated";
+            $q .= "headline=:headline, text=:text, header_image=:header_image, filename=:filename, ";
+            $q .= "emphasis=:emphasis, related_data=:related_data, time_generated=:time_generated";
             $vars = array(
             ':slug'=>$insight->slug,
             ':date'=>$insight->date,
             ':instance_id'=>$insight->instance_id,
             ':headline'=>$insight->headline,
             ':text'=>$insight->text,
+            ':header_image'=>$insight->header_image,
             ':filename'=>$insight->filename,
             ':emphasis'=>$insight->emphasis,
             ':related_data'=>((isset($insight->related_data))?serialize($insight->related_data):null),

@@ -51,7 +51,6 @@ setActiveDateGroup = ->
       # Is the top of the screen inside a date group? 
       # The 45px is to account for the fixed hehader
       if $(@).offset().top < $(window).scrollTop() + wt.navHeight < $(@).data("scroll-bottom") - 14
-        $("#active-group").text #{i}
         anyActive = true
         # Has the active group not been set?
         if not $lastActiveDateGroup? then $lastActiveDateGroup = $(@)
@@ -191,7 +190,7 @@ $ ->
   $(window).resize ->
     setListOpenData(false, true)
     setNavHeight(true)
-    $("#page-content").css({minHeight: $(window).height() - wt.navHeight})
+    # $("#page-content").css({minHeight: $(window).height() - wt.navHeight})
     if !$("body").hasClass("menu-off") and $("body").hasClass("menu-open") and
     $(window).width() < 820 and (not isjPMon)
       jPM.on()

@@ -60,6 +60,12 @@ class AmplifierInsight extends InsightPluginParent implements InsightPlugin {
                         $headline = $add_audience . " more people saw " . $retweeted_user->username . "'s " .
                             $this->terms->getNoun('post') . " thanks to " . $this->username . ".";
 
+                        // semi-randomly use a different phrasing
+                        if ($post->id % 2 == 0) {
+                            $headline = $retweeted_user->full_name . " can thank " . $this->username . " for " .
+                                $add_audience . " more people seeing that " . $this->terms->getNoun('post') . ".";
+                        }
+
                         $my_insight = new Insight();
 
                         $my_insight->instance_id = $instance->id;
@@ -68,10 +74,10 @@ class AmplifierInsight extends InsightPluginParent implements InsightPlugin {
                         $my_insight->headline = $headline; // or just set a string like 'Ohai';
                         $my_insight->text = $insight_text; // or just set a strong like "Greetings humans";
                         $my_insight->header_image = $retweeted_user->avatar;
-                        $my_insight->emphasis = Insight::EMPHASIS_MED; //Set emphasis optionally, default is Insight::EMPHASIS_LOW
+                        $my_insight->emphasis = Insight::EMPHASIS_LOW; //Set emphasis optionally, default is Insight::EMPHASIS_LOW
                         $my_insight->filename = basename(__FILE__, ".php"); //Same for every insight, must be set exactly this way
-                        $my_insight->setPosts($post);
-                        $my_insight->setPeople($retweeted_user);
+                        $my_insight->setPosts(array($post));
+                        $my_insight->setPeople(array($retweeted_user));
                         $this->insight_dao->insertInsight($my_insight);
                     }
                 }

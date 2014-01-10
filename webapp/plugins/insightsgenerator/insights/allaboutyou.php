@@ -45,7 +45,7 @@ class AllAboutYouInsight extends InsightPluginParent implements InsightPlugin {
                 $count += self::countFirstPersonReferences($post->post_text);
             }
             if ($count > 1) {
-                $headline = "Where doth the world thrust forth a vanity &mdash; That is not quickly buzz'd into his ears?";
+                $headline = "\"There could be no extreme vanity in my recognition of myself, if in fact there could be any at all.\"";
                 $insight_text = "$this->username's ".$this->terms->getNoun('post', (count($last_week_of_posts) > 1))
                 ." contained the words \"I\", \"me\", \"my\", \"mine\", or \"myself\" "
                 ."<strong>".$count." times</strong> in the last week.";

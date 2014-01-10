@@ -185,7 +185,7 @@ class InteractionsInsight extends InsightPluginParent implements InsightPlugin {
                 $my_insight->date = $this->insight_date; //date of the data this insight applies to
                 $my_insight->headline = $headline;
                 $my_insight->text = $insight_text;
-                $my_insight->header_image = '';
+                $my_insight->header_image = $mentioned_user->avatar; // '';
                 $my_insight->emphasis = Insight::EMPHASIS_LOW; //Set emphasis optionally, default is Insight::EMPHASIS_LOW
                 $my_insight->filename = basename(__FILE__, ".php"); //Same for every insight, must be set exactly this way
                 $my_insight->setPeople($users_mentioned);

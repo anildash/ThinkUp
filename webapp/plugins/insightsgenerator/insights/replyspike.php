@@ -204,7 +204,7 @@ class ReplySpikeInsight extends InsightPluginParent implements InsightPlugin {
                     $my_insight->filename = basename(__FILE__, ".php"); //Same for every insight, must be set exactly this way
                     $my_insight->setPosts($my_insight_posts);
 
-                    $this->insight_dao->insertInsight($my_insight);                    
+                    $this->insight_dao->insertInsight($my_insight);
                 }
 
             }

@@ -1,20 +1,57 @@
+<div class="table-responsive col-xs-6 closed" id="profiler" style="position: fixed; bottom: 0; border: 1px solid #ccc; width: 100%; height: 33%; background-color: #ffc; opacity: 0.8; overflow: scroll;">
+<i class="fa fa-plus-square" id="profiler-close"></i>
 
-<div class="table-responsive col-xs-6" style="position: absolute; top: 48px; right: 4px; border: 1px solid #ccc; width: 33%; height: 1000px; background-color: #ffc; opacity: 0.8; overflow: scroll;">
+<h4>Profiler</h4>
 
 {if $i}
 
-<script type="text/javascript">
-
-	var insightsArray = {$insights|@json_encode};
-
-</script>
-
 <div id="instance_tree"><div>
 
+{literal}
+<style>
+.profiler-insights-toggle .neg { display: none; }
+.profiler-insights-toggle.closed .neg { display: block; }
+.profiler-insights-toggle.closed .pos { display: none; }
+#profiler-close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
 
-<pre style="background-color: transparent; border: none;">
-{$insights|@print_r}
-</pre>
+#profiler.closed { height: 50px !important;}
+#profiler.closed * { display: none; }
+#profiler.closed h4, #profiler.closed #profiler-close { display: block;}
+</style>
+{/literal}
+
+<div class="profiler-insights">
+	<div class="profiler-insights-toggle">
+		<a href="#" class="pos">Show insights data</a>
+		<a href="#" class="neg">Hide insights data</a>
+	</div> 
+	<pre class="profiler-insights-data" style="display: none;background-color: transparent; border: none;">
+	{$insights|@print_r}
+	</pre>
+</div>
+
+{literal}
+<script type="text/javascript">
+
+	// var insightsArray = {$insights|@json_encode};
+	$("body").on("click", ".profiler-insights-toggle a", function(e){
+		e.preventDefault();
+		$(this).parent().toggleClass("closed");
+		$(".profiler-insights-data").toggle();
+	});
+
+	$("body").on("click", "#profiler-close, #profiler h4", function(e){
+		e.preventDefault();
+		$("#profiler").toggleClass("closed");
+		$("#profiler-close").toggleClass("fa-minus-square").toggleClass("fa-plus-square");
+	});
+
+</script>
+{/literal}
 
 {/if}
 

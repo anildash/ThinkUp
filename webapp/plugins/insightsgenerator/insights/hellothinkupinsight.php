@@ -44,14 +44,14 @@ class HelloThinkUpInsight extends InsightPluginParent implements InsightPlugin {
         $my_insight = new Insight();
 
         //REQUIRED: Set the insight's required attributes
-        $my_insight->instance_id = $instance->id;
         $my_insight->slug = 'my_test_insight_hello_thinkup'; //slug to label this insight's content
-        $my_insight->date = $this->insight_date; //date of the data this insight applies to
+        $my_insight->instance_id = $instance->id;
+        $my_insight->date = $this->insight_date; //date is often this or $simplified_post_date
         $my_insight->headline = $headline; // or just set a string like 'Ohai';
         $my_insight->text = $insight_text; // or just set a strong like "Greetings humans";
         $my_insight->header_image = $header_image;
-        $my_insight->emphasis = Insight::EMPHASIS_MED; //Set emphasis optionally, default is Insight::EMPHASIS_LOW
         $my_insight->filename = basename(__FILE__, ".php"); //Same for every insight, must be set exactly this way
+        $my_insight->emphasis = Insight::EMPHASIS_MED; //Set emphasis optionally, default is Insight::EMPHASIS_LOW
 
         //OPTIONAL: Attach related data of various types using Insight setter functions
         //$my_insight->setPosts($my_insight_posts);

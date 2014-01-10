@@ -609,6 +609,24 @@ body.account .app-message {
   padding: 46px 0 0;
   width: 100%;
 }
+.footer {
+  width: 100%;
+  border-top: 1px solid #dbdbdb;
+  padding: 14px 0 28px;
+}
+.footer .footer-container {
+  width: 100%;
+  max-width: 780px;
+  min-width: 320px;
+  padding: 0 5px;
+  margin: 0 auto;
+}
+.footer .footer-container p {
+  margin: 0;
+  color: #999999;
+  font-size: 13px;
+  line-height: 1.385;
+}
 body.app-message-visible .container {
   padding-top: 71px;
 }
@@ -654,6 +672,12 @@ body.app-message-visible.account .container {
 }
 .stream .date-group-today .date-marker .absolute {
   display: none;
+}
+.stream.stream-permalink .date-marker {
+  display: none;
+}
+.stream.stream-permalink .insight {
+  margin: 28px auto;
 }
 .insight {
   border: 0;
@@ -1200,7 +1224,8 @@ body.app-message-visible.account .container {
   .stream {
     padding: 0 10px;
   }
-  .stream .date-group {
+  .stream .date-group,
+  .stream .stream-pagination-control {
     width: 540px;
     margin: 0 auto;
   }
@@ -1291,9 +1316,13 @@ body.app-message-visible.account .container {
   .stream:after {
     clear: both;
   }
-  .stream .date-group {
+  .stream .date-group,
+  .stream .stream-pagination-control {
     width: 780px;
     margin: 0 auto;
+  }
+  .stream .stream-pagination-control {
+    padding: 0 80px 0 160px;
   }
   .stream .date-marker {
     float: left;

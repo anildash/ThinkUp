@@ -61,7 +61,6 @@
       $(".date-group").each(function(i) {
         var _ref;
         if (($(this).offset().top < (_ref = $(window).scrollTop() + wt.navHeight) && _ref < $(this).data("scroll-bottom") - 14)) {
-          $("#active-group").text;
           anyActive = true;
           if ($lastActiveDateGroup == null) $lastActiveDateGroup = $(this);
           pinDateMarker($(this));
@@ -225,9 +224,6 @@
     $(window).resize(function() {
       setListOpenData(false, true);
       setNavHeight(true);
-      $("#page-content").css({
-        minHeight: $(window).height() - wt.navHeight
-      });
       if (!$("body").hasClass("menu-off") && $("body").hasClass("menu-open") && $(window).width() < 820 && (!isjPMon)) {
         jPM.on();
         isjPMon = true;
