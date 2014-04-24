@@ -1,5 +1,5 @@
-{include file="_header.tpl"}
-{include file="_statusbar.tpl"}
+{include file="_header.tpl" body_classes="settings account menu-off"}
+{include file="_navigation.tpl"}
 
 <div id="main" class="container">
 
@@ -13,32 +13,22 @@
     </div>
 
     {if $requirements_met}
-    
-    
+
+
     <div class="row">
-        <div class="col-md-3">
 
-        </div>
         <div class="col-md-9">
-
-        <div class="alert alert-success">
-            <i class="fa fa-check"></i>
-            <strong>Great!</strong> Your system has everything it needs to run ThinkUp.
-        </div>        
 
         <a href="index.php?step=2" class="btn btn-large btn-success" id="nextstep">Let's Go <i class="fa fa-arrow-right"></i></a>
-        
-        </div>
-    </div>
-    
-    {else}
-    
-    <div class="row">
-        <div class="col-md-3">
 
         </div>
+    </div>
+
+    {else}
+
+    <div class="row">
         <div class="col-md-9">
-    
+
             <div class="alert alert-danger">
                 <i class="fa fa-exclamation-triangle"></i>
                 <strong>Oops!</strong> Your web server isn't set up to run ThinkUp. Please fix the problems below and try installation again.
@@ -97,7 +87,7 @@
     </div>
 
     {/if}
-        
+
 </div>
-  
+
 {include file="_footer.tpl"}
