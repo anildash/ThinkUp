@@ -76,10 +76,9 @@
 
 {include file="_usermessage.tpl"}
 
-{if count($owner_instances) > 0 }{include file="_usermessage.tpl" field="user_add"}{/if}
-
 {if count($owner_instances) > 0 }
 
+{include file="_usermessage-v2.tpl" field="user_add"}
 
 <table class="table">
 
