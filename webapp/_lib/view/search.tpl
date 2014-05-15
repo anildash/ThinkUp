@@ -22,12 +22,26 @@
   isset($i->related_data.hero_image) and $i->emphasis > '1'}insight-wide{/if}" id="insight-{$i->id}">
   <div class="panel-heading ">
     <h2 class="panel-title">
-        {if $smarty.get.c eq 'posts'}Are these the posts you were looking for?{/if}
-        {if $smarty.get.c eq 'followers'}Looks like there are some folks answering to "{$smarty.get.q}".{/if}
+        {if $smarty.get.c eq 'posts'}
+          {if $posts|@count > 0}
+            Are these the posts you were looking for?
+          {else}
+            Hmm, didn't find anything for that.
+          {/if}
+        {/if}
+        {if $smarty.get.c eq 'followers'}
+          {if $users|@count > 0}
+            Looks like {$users|@count} people answer to "{$smarty.get.q}".
+          {else}
+            Hmm, no luck looking for "{$smarty.get.q}" people.
+          {/if}
+        {/if}
     </h2>
+    <!--
     <p class="panel-subtitle">
         Here are the {if $current_page eq 1}first {$posts|@count} {/if}results
     </p>
+    -->
     {if $i->header_image neq ''}
     <img src="{$i->header_image|use_https}" alt="" width="50" height="50" class="img-circle userpic userpic-featured">
     {/if}
@@ -41,7 +55,7 @@
                 {include file=$tpl_path|cat:"_post.tpl" post=$post hide_insight_header='1'}
             {/foreach}
             {else}
-             <h2>No posts found.</h2>
+             <p>Sorry, ThinkUp couldn't find anything for your search.</p>
             {/if}
         {/if}
 
@@ -51,7 +65,7 @@
                 {include file=$tpl_path|cat:"_post.tpl" post=$post hide_insight_header='1'}
             {/foreach}
             {else}
-             <h2>No posts found.</h2>
+             <p>ThinkUp couldn't find any matching results.</p>
             {/if}
         {/if}
 
@@ -59,7 +73,7 @@
             {if $users|@count > 0}
                 {include file=$tpl_path|cat:"_users.tpl" users=$users }
             {else}
-                <h2>No followers found.</h2>
+                <p>Sorry, that search doesn't turn up any followers.</p>
             {/if}
         {/if}
 
