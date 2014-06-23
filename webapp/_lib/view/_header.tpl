@@ -78,8 +78,8 @@
     <![endif]-->
 
     {if ($smarty.get.m eq 'manage') or (isset($smarty.get.p))}
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="{$site_root_path}assets/js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{$site_root_path}assets/js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
     {foreach from=$header_scripts item=script}
     <script type="text/javascript" src="{$site_root_path}{$script}"></script>
     {/foreach}

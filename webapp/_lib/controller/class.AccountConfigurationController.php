@@ -53,7 +53,7 @@ class AccountConfigurationController extends ThinkUpAuthController {
         $this->disableCaching();
         $this->addHeaderJavaScript('assets/js/jqBootstrapValidation.js');
         $this->addHeaderJavaScript('assets/js/validate-fields.js');
-        $this->addHeaderJavaScript('assets/js/jstz-1.0.4.min.js');
+        $this->addHeaderJavaScript('assets/js/jstz.min.js');
 
         $owner_dao = DAOFactory::getDAO('OwnerDAO');
         $invite_dao = DAOFactory::getDAO('InviteDAO');
