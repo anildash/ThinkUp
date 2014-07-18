@@ -76,6 +76,7 @@
     <script type="text/javascript" src="{$site_root_path}assets/js/linkify.js"></script>
     {/if}
 
+{if isset($thinkupllc_endpoint)}
     {literal}<script>
       var _gaq=[['_setAccount','UA-76614-5'],['_trackPageview']];
       (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
@@ -102,6 +103,7 @@
     })();
 
     </script>{/literal}
+{/if}
 
 </body>
 
